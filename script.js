@@ -1,5 +1,5 @@
 // Importa os dados dos projetos do arquivo projetos.js
-import projetos from './projetos.js';
+
 
 // Rolagem suave para os links de navegação
 document.querySelectorAll('nav a').forEach(anchor => {
