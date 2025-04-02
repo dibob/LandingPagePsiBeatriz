@@ -28,7 +28,6 @@ function carregarProjetos() {
             const descricaoProjetoP = document.createElement('p');
             descricaoProjetoP.textContent = projeto.descricao;
 
-            projetoDiv.appendChild(imagemProjeto);
             projetoDiv.appendChild(tituloProjeto);
             projetoDiv.appendChild(descricaoProjetoP);
 
