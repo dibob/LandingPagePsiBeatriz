@@ -1,3 +1,7 @@
+// Importa os dados dos projetos do arquivo projetos.js
+import projetos from './projetos.js';
+
+// Rolagem suave para os links de navegação
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -8,52 +12,37 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
 });
 
-async function carregarProjetos() {
+// Função para carregar os projetos dinamicamente
+function carregarProjetos() {
     const containerProjetos = document.getElementById('container-projetos');
 
-    try {
-        // Obtenha a lista de arquivos na pasta "projetos"
-        const resposta = await fetch('/pasta-projetos/');
-        const arquivos = await resposta.text();
-        const listaArquivos = arquivos.match(/href="([^"]+\.txt)"/g);
+    if (projetos.length > 0) {
+        projetos.forEach(projeto => {
+            // Crie os elementos HTML para cada projeto
+            const projetoDiv = document.createElement('div');
+            projetoDiv.classList.add('projeto');
 
-        if (listaArquivos) {
-            for (const arquivoLink of listaArquivos) {
-                const nomeArquivo = arquivoLink.match(/href="([^"]+\.txt)"/)[1];
-                const nomeProjeto = nomeArquivo.replace('.txt', '');
+            const imagemProjeto = document.createElement('img');
+            imagemProjeto.src = projeto.imagem;
+            imagemProjeto.alt = projeto.nome;
 
-                // Leia o conteúdo do arquivo .txt
-                const respostaConteudo = await fetch(`/pasta-projetos/${nomeArquivo}`);
-                const descricaoProjeto = await respostaConteudo.text();
+            const tituloProjeto = document.createElement('h3');
+            tituloProjeto.textContent = projeto.nome;
 
-                // Crie os elementos HTML para o projeto
-                const projetoDiv = document.createElement('div');
-                projetoDiv.classList.add('projeto');
+            const descricaoProjetoP = document.createElement('p');
+            descricaoProjetoP.textContent = projeto.descricao;
 
-                // const imagemProjeto = document.createElement('img');
-                // imagemProjeto.src = `imagens/${nomeProjeto}.jpg`; // Certifique-se de ter imagens correspondentes
-                // imagemProjeto.alt = nomeProjeto;
+            projetoDiv.appendChild(imagemProjeto);
+            projetoDiv.appendChild(tituloProjeto);
+            projetoDiv.appendChild(descricaoProjetoP);
 
-                const tituloProjeto = document.createElement('h3');
-                tituloProjeto.textContent = nomeProjeto;
-
-                const descricaoProjetoP = document.createElement('p');
-                descricaoProjetoP.textContent = descricaoProjeto;
-
-                projetoDiv.appendChild(imagemProjeto);
-                projetoDiv.appendChild(tituloProjeto);
-                projetoDiv.appendChild(descricaoProjetoP);
-
-                containerProjetos.appendChild(projetoDiv);
-            }
-        } else {
-            containerProjetos.innerHTML = '<p>Nenhum projeto encontrado.</p>';
-        }
-    } catch (erro) {
-        console.error('Erro ao carregar projetos:', erro);
-        containerProjetos.innerHTML = '<p>Erro ao carregar projetos.</p>';
+            containerProjetos.appendChild(projetoDiv);
+        });
+    } else {
+        // Caso não haja projetos, exibe mensagem
+        containerProjetos.innerHTML = '<p>Nenhum projeto encontrado.</p>';
     }
 }
 
-// Chame a função para carregar os projetos quando a página for carregada
+// Carrega os projetos quando a página é carregada
 window.onload = carregarProjetos;
