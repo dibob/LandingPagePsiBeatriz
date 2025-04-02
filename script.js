@@ -22,10 +22,6 @@ function carregarProjetos() {
             const projetoDiv = document.createElement('div');
             projetoDiv.classList.add('projeto');
 
-            const imagemProjeto = document.createElement('img');
-            imagemProjeto.src = projeto.imagem;
-            imagemProjeto.alt = projeto.nome;
-
             const tituloProjeto = document.createElement('h3');
             tituloProjeto.textContent = projeto.nome;
 
