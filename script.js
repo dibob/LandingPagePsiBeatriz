@@ -30,9 +30,9 @@ async function carregarProjetos() {
                 const projetoDiv = document.createElement('div');
                 projetoDiv.classList.add('projeto');
 
-                const imagemProjeto = document.createElement('img');
-                imagemProjeto.src = `imagens/${nomeProjeto}.jpg`; // Certifique-se de ter imagens correspondentes
-                imagemProjeto.alt = nomeProjeto;
+                // const imagemProjeto = document.createElement('img');
+                // imagemProjeto.src = `imagens/${nomeProjeto}.jpg`; // Certifique-se de ter imagens correspondentes
+                // imagemProjeto.alt = nomeProjeto;
 
                 const tituloProjeto = document.createElement('h3');
                 tituloProjeto.textContent = nomeProjeto;
