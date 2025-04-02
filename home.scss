@@ -1,0 +1,39 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 1rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+}
+
+section {
+    padding: 2rem;
+    text-align: center;
+}
+
+.projeto {
+    margin-bottom: 2rem;
+}
+
+.projeto img {
+    max-width: 100%;
+    height: auto;
+}
